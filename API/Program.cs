@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using API.Data;
+using API.Entitys;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,9 +19,9 @@ namespace API
             var services = scope.ServiceProvider;
             // We cannot debug this at Run time so the exception will catch errors at our seed
             try{
-                    var context = services.GetRequiredService<DataContext>();
+                    var context = services.GetRequiredService<StarwarsContext>();
                     // Create the data base if none exsite and add migration and seeding;
-                    await context.Database.MigrateAsync();
+                    // await context.Database.MigrateAsync();
                     // @todo fix this seeding 
                     // await Seed.SeedDataBase(context);
             } catch(Exception ex){

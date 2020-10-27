@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using API.Data;
+using API.Entitys;
 using Microsoft.EntityFrameworkCore;
-
 
 namespace API.Controllers
 {
@@ -13,29 +13,27 @@ namespace API.Controllers
     public class StarwarsController  : ControllerBase
     {
         
-         private readonly ILogger<StarwarsController> _logger;
-
-     
+        private readonly StarwarsContext _context;
 
          // Constructor
-          public StarwarsController(ILogger<StarwarsController> logger)
+          public StarwarsController(StarwarsContext context)
         {
-           
-            _logger = logger;
+           _context = context;
+          
         }
 
         [HttpGet("SeedData")]
          public async  Task<ActionResult> LoadData(){
            
-         
+         await Seed.SeedDataBase(_context);
            return Ok("Completed") ;
         }
         
-        // [HttpGet("films")]
-        //  public async Task<ActionResult<IEnumerable<Films>>> GetFilms(){
+        [HttpGet("films")]
+         public async Task<ActionResult<IEnumerable<Films>>> GetFilms(){
             
-        //    return Ok(await _repo.GetFilmsAsync());
-        // }
+           return Ok(await  _context.Films.ToArrayAsync<Films>());
+        }
 
         //  [HttpGet("film/{id}")]
         //  public async Task<ActionResult<Films>> GetFilm(int id){
