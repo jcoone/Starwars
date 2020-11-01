@@ -5,6 +5,8 @@ using Microsoft.Extensions.Logging;
 using API.Data;
 using API.Entitys;
 using Microsoft.EntityFrameworkCore;
+using API.Data.DTOs;
+using AutoMapper;
 
 namespace API.Controllers
 {
@@ -15,24 +17,20 @@ namespace API.Controllers
         
         private readonly StarwarsContext _context;
 
+        private readonly IMapper _mapper;
          // Constructor
-          public StarwarsController(StarwarsContext context)
+          public StarwarsController(StarwarsContext context, IMapper mapper)
         {
            _context = context;
-          
-        }
-
-        [HttpGet("SeedData")]
-         public async  Task<ActionResult> LoadData(){
-           
-         await Seed.SeedDataBase(_context);
-           return Ok("Completed") ;
+          _mapper = mapper;
         }
         
         [HttpGet("films")]
-         public async Task<ActionResult<IEnumerable<Films>>> GetFilms(){
+         public async Task<ActionResult<IEnumerable<FilmDto>>> GetFilms(){
             
-           return Ok(await  _context.Films.ToArrayAsync<Films>());
+           var _filmList = await _context.Films.ToArrayAsync<Films>();
+           var listToReturn = _mapper.Map<IEnumerable<FilmDto>>(_filmList);
+           return Ok(listToReturn);
         }
 
          [HttpGet("film/{id}")]
@@ -40,34 +38,6 @@ namespace API.Controllers
             
          var film = await _context.Films.FindAsync(id);
          return film;
-        }
-
-         [HttpGet("peoples")]
-         public async Task<ActionResult<IEnumerable<Peoples>>> GetPeoples(){
-            
-            var peoples = await _context.Peoples.ToListAsync();
-            return peoples;
-        }
-
-         [HttpGet("person/{id}")]
-         public async Task<ActionResult<Peoples>> GetPerson(int id){
-            
-         var person = await _context.Peoples.FindAsync(id);
-         return person;
-        }
-
-         [HttpGet("planets")]
-         public async Task<ActionResult<IEnumerable<Planets>>> GetPlanets(){
-            
-            var planets = await _context.Planets.ToListAsync();
-            return planets;
-        }
-
-         [HttpGet("planet/{id}")]
-         public async Task<ActionResult<Planets>> GetPlanet(int id){
-            
-         var planet = await _context.Planets.FindAsync(id);
-         return planet;
         }
 
     }

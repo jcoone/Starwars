@@ -1,5 +1,7 @@
 using API.Data;
 using API.Entitys;
+using API.helper;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -21,11 +23,12 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddDbContext<StarwarsContext>(options =>
             {   
                 options.UseSqlServer(_config.GetConnectionString("DefaultConnection"));
             });
-          
+            services.AddAutoMapper(typeof(AutoProfiling));
             services.AddControllers();
             
         }

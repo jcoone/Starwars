@@ -11,8 +11,19 @@ namespace API.Entitys
             PlanetsToFilms = new HashSet<PlanetsToFilms>();
         }
 
+        /// <summary>  
+        /// Gets or sets Unique Url ID property.  
+        /// </summary>  
         public string Url { get; set; }
+
+        /// <summary>  
+        /// Gets or sets The Film Title.  
+        /// </summary>  
         public string Title { get; set; }
+
+        /// <summary>  
+        /// Gets or sets The Episode Id.  
+        /// </summary>
         public short EpisodeId { get; set; }
         public string OpeningCrawl { get; set; }
         public string Director { get; set; }

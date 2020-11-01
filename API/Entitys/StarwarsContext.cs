@@ -27,15 +27,6 @@ namespace API.Entitys
         public virtual DbSet<Species> Species { get; set; }
         public virtual DbSet<SpeciesToPeople> SpeciesToPeople { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-
-                optionsBuilder.UseSqlServer("Server=localhost;Database=Starwars;Trusted_Connection=True;");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
