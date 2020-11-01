@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace API.Entitys
 {
@@ -10,8 +8,7 @@ namespace API.Entitys
         {
         }
 
-        public StarwarsContext(DbContextOptions<StarwarsContext> options)
-            : base(options)
+        public StarwarsContext(DbContextOptions<StarwarsContext> options): base(options)
         {
         }
 

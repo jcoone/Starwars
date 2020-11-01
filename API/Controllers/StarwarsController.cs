@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using API.Data;
 using API.Entitys;
 using Microsoft.EntityFrameworkCore;
 using API.Data.DTOs;
 using AutoMapper;
+using API.Repo;
 
 namespace API.Controllers
 {
@@ -15,20 +14,20 @@ namespace API.Controllers
     public class StarwarsController  : ControllerBase
     {
         
-        private readonly StarwarsContext _context;
+        private readonly IStarwars _repo;
 
         private readonly IMapper _mapper;
          // Constructor
-          public StarwarsController(StarwarsContext context, IMapper mapper)
+          public StarwarsController(IStarwars repo, IMapper mapper)
         {
-           _context = context;
+           _repo = repo;
           _mapper = mapper;
         }
         
         [HttpGet("films")]
          public async Task<ActionResult<IEnumerable<FilmDto>>> GetFilms(){
             
-           var _filmList = await _context.Films.ToArrayAsync<Films>();
+           var _filmList = await _repo.GetFilmsAysnc();
            var listToReturn = _mapper.Map<IEnumerable<FilmDto>>(_filmList);
            return Ok(listToReturn);
         }
@@ -36,7 +35,7 @@ namespace API.Controllers
          [HttpGet("film/{id}")]
          public async Task<ActionResult<Films>> GetFilm(int id){
             
-         var film = await _context.Films.FindAsync(id);
+         var film = await _repo.GetFilmAysnc(id);
          return film;
         }
 
