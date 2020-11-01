@@ -8,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilmsComponent implements OnInit {
 
+  // this need to be a models
  films: any;
+ err: string;
+ 
 
   constructor(private http: HttpClient) { 
 
@@ -22,6 +25,8 @@ export class FilmsComponent implements OnInit {
       this.films = response;
     }, error => {
       console.log(error);
+      this.err = error;
+      
     });
     
   }
