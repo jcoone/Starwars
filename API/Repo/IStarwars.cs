@@ -9,6 +9,6 @@ namespace API.Repo
         // This creates our contracts
          Task<IEnumerable<Films>> GetFilmsAysnc();
 
-         Task<Films> GetFilmAysnc(int id);
+         Task<Films> GetFilmAysnc(string url);
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using API.Data.DTOs;
 using AutoMapper;
 using API.Repo;
+using Microsoft.AspNetCore.Cors;
 
 namespace API.Controllers
 {
@@ -33,10 +34,12 @@ namespace API.Controllers
         }
 
          [HttpGet("film/{id}")]
-         public async Task<ActionResult<Films>> GetFilm(int id){
-            
-         var film = await _repo.GetFilmAysnc(id);
-         return film;
+        public async Task<ActionResult<Films>> GetFilm(int id)
+        {
+          // Only used this as it was unique in the request.
+            string url = $"http://swapi.dev/api/films/{id}/";
+            var film = await _repo.GetFilmAysnc(url);
+            return film;
         }
 
     }

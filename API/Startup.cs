@@ -15,25 +15,36 @@ namespace API
     public class Startup
     {
         private readonly IConfiguration _config;
+
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration config)
         {
             _config = config;
-            
+
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           
+
             services.AddDbContext<StarwarsContext>(options =>
-            {   
+            {
                 options.UseSqlServer(_config.GetConnectionString("DefaultConnection"));
             });
             services.AddAutoMapper(typeof(AutoProfiling));
-            services.AddControllers();
+            services.AddCors(options =>
+                                        {
+                                        options.AddPolicy(
+                                        "CorsPolicy",
+                                        builder => builder.WithOrigins("http://localhost:4200")
+                                        .AllowAnyMethod()
+                                        .AllowAnyHeader()
+                                        .AllowCredentials());
+            });
+
             services.AddScoped<IStarwars, Starwars>();
-            services.AddCors();
-            
+            services.AddControllers();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,7 +52,6 @@ namespace API
         {
             if (env.IsDevelopment())
             {
-               
                 app.UseDeveloperExceptionPage();
             }
 
@@ -49,8 +59,8 @@ namespace API
 
             app.UseRouting();
 
-            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
-            
+            app.UseCors("CorsPolicy");
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

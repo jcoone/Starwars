@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Entitys;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace API.Repo
 {
@@ -12,10 +13,10 @@ namespace API.Repo
         public Starwars(StarwarsContext context){
             _context = context; 
         }
-        public async Task<Films> GetFilmAysnc(int id)
+        public async Task<Films> GetFilmAysnc(string url)
         {
           
-          return await _context.Films.FindAsync(id);
+          return await _context.Films.Where(x => x.Url == url).FirstAsync();
         }
 
         public async Task<IEnumerable<Films>> GetFilmsAysnc()
