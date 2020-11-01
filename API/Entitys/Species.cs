@@ -13,10 +13,10 @@ namespace API.Entitys
         public string SkinColors { get; set; }
         public string HairColors { get; set; }
         public string EyeColors { get; set; }
-        public short? AverageLifespan { get; set; }
+        public short AverageLifespan { get; set; }
         public string Homeworld { get; set; }
         public DateTime Created { get; set; }
-        public byte[] Edited { get; set; }
+        public DateTime Edited { get; set; }
         public string Language { get; set; }
     }
 }

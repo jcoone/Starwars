@@ -35,40 +35,40 @@ namespace API.Controllers
            return Ok(await  _context.Films.ToArrayAsync<Films>());
         }
 
-        //  [HttpGet("film/{id}")]
-        //  public async Task<ActionResult<Films>> GetFilm(int id){
+         [HttpGet("film/{id}")]
+         public async Task<ActionResult<Films>> GetFilm(int id){
             
-        //  var film = await _context.films.FindAsync(id);
-        //  return film;
-        // }
+         var film = await _context.Films.FindAsync(id);
+         return film;
+        }
 
-        //  [HttpGet("peoples")]
-        //  public async Task<ActionResult<IEnumerable<Peoples>>> GetPeoples(){
+         [HttpGet("peoples")]
+         public async Task<ActionResult<IEnumerable<Peoples>>> GetPeoples(){
             
-        //     var peoples = await _context.peoples.ToListAsync();
-        //     return peoples;
-        // }
+            var peoples = await _context.Peoples.ToListAsync();
+            return peoples;
+        }
 
-        //  [HttpGet("person/{id}")]
-        //  public async Task<ActionResult<Peoples>> GetPerson(int id){
+         [HttpGet("person/{id}")]
+         public async Task<ActionResult<Peoples>> GetPerson(int id){
             
-        //  var person = await _context.peoples.FindAsync(id);
-        //  return person;
-        // }
+         var person = await _context.Peoples.FindAsync(id);
+         return person;
+        }
 
-        //  [HttpGet("planets")]
-        //  public async Task<ActionResult<IEnumerable<Planets>>> GetPlanets(){
+         [HttpGet("planets")]
+         public async Task<ActionResult<IEnumerable<Planets>>> GetPlanets(){
             
-        //     var planets = await _context.planets.ToListAsync();
-        //     return planets;
-        // }
+            var planets = await _context.Planets.ToListAsync();
+            return planets;
+        }
 
-        //  [HttpGet("planet/{id}")]
-        //  public async Task<ActionResult<Planets>> GetPlanet(int id){
+         [HttpGet("planet/{id}")]
+         public async Task<ActionResult<Planets>> GetPlanet(int id){
             
-        //  var planet = await _context.planets.FindAsync(id);
-        //  return planet;
-        // }
+         var planet = await _context.Planets.FindAsync(id);
+         return planet;
+        }
 
     }
 }

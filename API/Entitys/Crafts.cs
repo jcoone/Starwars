@@ -20,7 +20,7 @@ namespace API.Entitys
         public short Mglt { get; set; }
         public string StarshipClass { get; set; }
         public DateTime Created { get; set; }
-        public byte[] Edited { get; set; }
+        public DateTime Edited { get; set; }
         public string VehicleType { get; set; }
     }
 }

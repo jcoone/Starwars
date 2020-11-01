@@ -38,6 +38,7 @@ namespace API.Entitys
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<Crafts>(entity =>
             {
                 entity.HasKey(e => e.Url)
@@ -65,11 +66,10 @@ namespace API.Entitys
                     .HasColumnName("crew")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Edited)
-                    .IsRequired()
+               entity.Property(e => e.Edited)
                     .HasColumnName("edited")
-                    .IsRowVersion()
-                    .IsConcurrencyToken();
+                    .HasColumnType("datetime");
+                    
 
                 entity.Property(e => e.HyperdriveRating).HasColumnName("hyperdrive_rating");
 
@@ -154,11 +154,10 @@ namespace API.Entitys
                     .HasColumnName("director")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Edited)
-                    .IsRequired()
+               entity.Property(e => e.Edited)
                     .HasColumnName("edited")
-                    .IsRowVersion()
-                    .IsConcurrencyToken();
+                    .HasColumnType("datetime");
+                   
 
                 entity.Property(e => e.EpisodeId).HasColumnName("episode_id");
 
@@ -203,16 +202,6 @@ namespace API.Entitys
                     .HasColumnName("birth_year")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Created)
-                    .HasColumnName("created")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.Edited)
-                    .IsRequired()
-                    .HasColumnName("edited")
-                    .IsRowVersion()
-                    .IsConcurrencyToken();
-
                 entity.Property(e => e.EyeColor)
                     .HasColumnName("eye_color")
                     .HasMaxLength(200);
@@ -241,6 +230,16 @@ namespace API.Entitys
                 entity.Property(e => e.SkinColor)
                     .HasColumnName("skin_color")
                     .HasMaxLength(100);
+
+                entity.Property(e => e.Created)
+                    .HasColumnName("created")
+                    .HasColumnType("datetime"); 
+
+                 entity.Property(e => e.Edited)
+                    .HasColumnName("edited")
+                    .HasColumnType("datetime");
+                   
+       
             });
 
             modelBuilder.Entity<PersonToCraft>(entity =>
@@ -266,11 +265,10 @@ namespace API.Entitys
 
                 entity.Property(e => e.Diameter).HasColumnName("diameter");
 
-                entity.Property(e => e.Edited)
-                    .IsRequired()
+               entity.Property(e => e.Edited)
                     .HasColumnName("edited")
-                    .IsRowVersion()
-                    .IsConcurrencyToken();
+                    .HasColumnType("datetime");
+                   
 
                 entity.Property(e => e.Gravity)
                     .IsRequired()
@@ -345,11 +343,10 @@ namespace API.Entitys
                     .HasColumnName("designation")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Edited)
-                    .IsRequired()
+               entity.Property(e => e.Edited)
                     .HasColumnName("edited")
-                    .IsRowVersion()
-                    .IsConcurrencyToken();
+                    .HasColumnType("datetime");
+                    
 
                 entity.Property(e => e.EyeColors)
                     .HasColumnName("eye_colors")

@@ -19,10 +19,11 @@ namespace API.Entitys
         public string EyeColor { get; set; }
         public string BirthYear { get; set; }
         public string Gender { get; set; }
-        public DateTime Created { get; set; }
-        public byte[] Edited { get; set; }
-        public string Homeworld { get; set; }
 
+        public string Homeworld { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime Edited { get; set; }
+        
         public virtual ICollection<FilmToPeople> FilmToPeople { get; set; }
     }
 }

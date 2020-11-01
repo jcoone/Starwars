@@ -19,7 +19,7 @@ namespace API.Entitys
         public string Producer { get; set; }
         public DateTime ReleaseDate { get; set; }
         public DateTime Created { get; set; }
-        public byte[] Edited { get; set; }
+        public DateTime Edited { get; set; }
 
         public virtual ICollection<FilmToPeople> FilmToPeople { get; set; }
         public virtual ICollection<PlanetsToFilms> PlanetsToFilms { get; set; }

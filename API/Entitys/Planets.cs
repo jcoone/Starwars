@@ -20,7 +20,7 @@ namespace API.Entitys
         public short SurfaceWater { get; set; }
         public string Population { get; set; }
         public DateTime Created { get; set; }
-        public byte[] Edited { get; set; }
+        public DateTime Edited { get; set; }
 
         public virtual ICollection<PlanetsToFilms> PlanetsToFilms { get; set; }
     }
