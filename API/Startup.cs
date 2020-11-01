@@ -1,6 +1,7 @@
 using API.Data;
 using API.Entitys;
 using API.helper;
+using API.Repo;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +31,7 @@ namespace API
             });
             services.AddAutoMapper(typeof(AutoProfiling));
             services.AddControllers();
+            services.AddScoped<IStarwars, Starwars>();
             services.AddCors();
             
         }

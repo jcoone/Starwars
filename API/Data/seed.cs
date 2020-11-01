@@ -160,7 +160,9 @@ namespace API.Data
             }
         }
 
-        // Api does not handle numbers returns strings where I expect a number.   
+        /// <summary>  
+        /// Api returns strings where I expect a number this is to handle the error will use a dto to change the result back.  
+        /// </summary>
         private static short ShortParse(dynamic value)
         {
             string v = value;
@@ -172,7 +174,6 @@ namespace API.Data
             }
             return -1;
         }
-
 
     }
 }
