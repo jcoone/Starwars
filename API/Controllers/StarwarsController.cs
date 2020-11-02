@@ -26,10 +26,10 @@ namespace API.Controllers
         }
         
         [HttpGet("films")]
-         public async Task<ActionResult<IEnumerable<Films>>> GetFilms(){
+         public async Task<ActionResult<IEnumerable<FilmDto>>> GetFilms(){
             
            var _filmList = await _repo.GetFilmsAysnc();
-           var listToReturn = _mapper.Map<IEnumerable<Films>>(_filmList);
+           var listToReturn = _mapper.Map<IEnumerable<FilmDto>>(_filmList);
            return Ok(listToReturn);
         }
 

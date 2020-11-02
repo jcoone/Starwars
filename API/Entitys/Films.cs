@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace API.Entitys
 {
@@ -34,5 +35,12 @@ namespace API.Entitys
 
         public virtual ICollection<FilmToPeople> FilmToPeople { get; set; }
         public virtual ICollection<PlanetsToFilms> PlanetsToFilms { get; set; }
+
+        public string[] Characters { 
+            get 
+            { 
+                return FilmToPeople.Select(c => c.PeopleUrl).ToArray(); 
+                }
+        }
     }
 }

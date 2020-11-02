@@ -18,10 +18,13 @@ namespace API.Data.DTOs
         public DateTime Created { get; set; }
         public DateTime Edited { get; set; }
 
-        [MapTo("FilmToPeople")]
-        public virtual ICollection<FilmToPeople> Characters  { get; set; }
+        // Filter the filem to people.
+        [MapTo("Characters")]
+        public  string[] Characters  { get; set; }
        
         [MapTo("PlanetsToFilms")]
-        public virtual ICollection<PlanetsToFilms> Planets { get; set; }
+        public virtual IList<String> Planets { get; set; }
+
+        
     }
 }
