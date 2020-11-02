@@ -16,14 +16,15 @@ namespace API
         {
            var host = CreateHostBuilder(args).Build();
            using var scope = host.Services.CreateScope();
-            var services = scope.ServiceProvider;
+           var services = scope.ServiceProvider;
             // We cannot debug this at Run time so the exception will catch errors at our seed
             try{
                     var context = services.GetRequiredService<StarwarsContext>();
-                    // Create the data base if none exsite and add migration and seeding;
-                    // await context.Database.MigrateAsync();
-                    // @todo fix this seeding 
-                    // await Seed.SeedDataBase(context);
+                    // Update Migrations to data base
+                    await context.Database.MigrateAsync();
+                    // Seed the database
+                    await Seed.SeedDataBase(context);
+                    Console.WriteLine("Seeding Passed");
             } catch(Exception ex){
             Console.WriteLine("Error in seed ", ex);
             var logger = services.GetRequiredService<Logger<Program>>();

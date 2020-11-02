@@ -14,21 +14,22 @@ namespace API.Data
         public static async Task SeedDataBase(StarwarsContext context)
         {
 
-            // Look to see if we have seeded anything
+           // We look to see if we have seeded.
+           if (await context.Films.AnyAsync()) return;
           
-        //     var films = await GetDataMode("films");
+            var films = await GetDataMode("films");
         
-        //     if (films != null)
-        //     {
-        //         SeedFilms(films);  
-        //     }
+            if (films != null)
+            {
+                SeedFilms(films);  
+            }
 
 
-        //    var  poeple = await GetDataMode("people");
-        //     if (poeple != null)
-        //     {
-        //            SeedPeople(poeple);           
-        //     }
+           var  poeple = await GetDataMode("people");
+            if (poeple != null)
+            {
+                   SeedPeople(poeple);           
+            }
 
             var result = await GetDataMode("species");
             if (result != null)
