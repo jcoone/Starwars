@@ -22,7 +22,7 @@ namespace API.Data.DTOs
         [MapTo("Characters")]
         public  string[] Characters  { get; set; }
        
-        [MapTo("PlanetsToFilms")]
+        [MapTo("Planets")]
         public virtual IList<String> Planets { get; set; }
 
         

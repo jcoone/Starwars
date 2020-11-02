@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.ComponentModel.DataAnnotations.Schema;
 namespace API.Entitys
 {
     public partial class Films
@@ -36,10 +36,19 @@ namespace API.Entitys
         public virtual ICollection<FilmToPeople> FilmToPeople { get; set; }
         public virtual ICollection<PlanetsToFilms> PlanetsToFilms { get; set; }
 
+        [NotMapped]
         public string[] Characters { 
             get 
             { 
                 return FilmToPeople.Select(c => c.PeopleUrl).ToArray(); 
+                }
+        }
+
+        [NotMapped]
+        public string[] Planets { 
+            get 
+            { 
+                return PlanetsToFilms.Select(c => c.PlanetUrl).ToArray(); 
                 }
         }
     }
