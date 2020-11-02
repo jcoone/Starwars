@@ -112,6 +112,7 @@ namespace API.Entitys
 
                 entity.Property(e => e.PeopleUrl).HasMaxLength(50);
 
+           
                 entity.HasOne(d => d.FilmUrlNavigation)
                     .WithMany(p => p.FilmToPeople)
                     .HasForeignKey(d => d.FilmUrl)
@@ -125,6 +126,7 @@ namespace API.Entitys
                     .HasConstraintName("FK_FilmToPeople_Peoples");
             });
 
+          
             modelBuilder.Entity<Films>(entity =>
             {
                 entity.HasKey(e => e.Url);

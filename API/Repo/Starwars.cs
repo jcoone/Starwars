@@ -15,13 +15,19 @@ namespace API.Repo
         }
         public async Task<Films> GetFilmAysnc(string url)
         {
-          
-          return await _context.Films.Where(x => x.Url == url).FirstAsync();
+          var result = await _context.Films
+          .Where(x => x.Url == url)
+          .Include(films => films.FilmToPeople)
+          .FirstAsync();
+          return result;
         }
 
         public async Task<IEnumerable<Films>> GetFilmsAysnc()
         {
-          return await _context.Films.ToArrayAsync<Films>();
+          var filmList =   await _context.Films
+          .Include(films => films.FilmToPeople)
+          .ToArrayAsync<Films>();
+          return filmList;                             
         }
     }
 }

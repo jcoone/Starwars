@@ -16,7 +16,6 @@ namespace API
     {
         private readonly IConfiguration _config;
 
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration config)
         {
             _config = config;
@@ -41,7 +40,9 @@ namespace API
                                         .AllowAnyHeader()
                                         .AllowCredentials());
             });
-
+            services.AddControllers().AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
             services.AddScoped<IStarwars, Starwars>();
             services.AddControllers();
 

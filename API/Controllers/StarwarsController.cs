@@ -26,10 +26,10 @@ namespace API.Controllers
         }
         
         [HttpGet("films")]
-         public async Task<ActionResult<IEnumerable<FilmDto>>> GetFilms(){
+         public async Task<ActionResult<IEnumerable<Films>>> GetFilms(){
             
            var _filmList = await _repo.GetFilmsAysnc();
-           var listToReturn = _mapper.Map<IEnumerable<FilmDto>>(_filmList);
+           var listToReturn = _mapper.Map<IEnumerable<Films>>(_filmList);
            return Ok(listToReturn);
         }
 
@@ -39,7 +39,7 @@ namespace API.Controllers
           // Only used this as it was unique in the request.
             string url = $"http://swapi.dev/api/films/{id}/";
             var film = await _repo.GetFilmAysnc(url);
-            return film;
+            return Ok(film);
         }
 
     }
