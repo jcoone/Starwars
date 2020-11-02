@@ -1,13 +1,12 @@
 <div *ngIf(error)>The Error Is {{err}}</div>
-
-<div *ngFor="let film of films">
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">{{film.title}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-      <p class="card-text">{{film.opening_crawl}}</p>
-      <!-- I could add a charachter link in here -->
-     
+<div class="row">
+  <div *ngFor="let film of films" style="padding:2px">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{film.title}}</h5>
+        <p class="card-text">{{film.openingCrawl}}</p>     
+      </div>
     </div>
   </div>
 </div>
+

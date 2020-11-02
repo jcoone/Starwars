@@ -25,5 +25,6 @@ namespace API.Entitys
         public DateTime Edited { get; set; }
         
         public virtual ICollection<FilmToPeople> FilmToPeople { get; set; }
+
     }
 }

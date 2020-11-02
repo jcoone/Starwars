@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using API.Entitys;
 using AutoMapper.Configuration.Conventions;
-using Newtonsoft.Json;
 
 namespace API.Data.DTOs
 {

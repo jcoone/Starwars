@@ -24,7 +24,6 @@ namespace API
                     await context.Database.MigrateAsync();
                     // Seed the database
                     await Seed.SeedDataBase(context);
-                    Console.WriteLine("Seeding Passed");
             } catch(Exception ex){
             Console.WriteLine("Error in seed ", ex);
             var logger = services.GetRequiredService<Logger<Program>>();

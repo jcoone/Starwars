@@ -1,11 +1,9 @@
-using API.Data;
 using API.Entitys;
 using API.helper;
 using API.Repo;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,20 +24,15 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<StarwarsContext>(options =>
-            {
-                options.UseSqlServer(_config.GetConnectionString("DefaultConnection"));
-            });
+            services.AddDbContext<StarwarsContext>();
             services.AddAutoMapper(typeof(AutoProfiling));
+
             services.AddCors(options =>
-                                        {
-                                        options.AddPolicy(
-                                        "CorsPolicy",
-                                        builder => builder.WithOrigins("http://localhost:4200")
-                                        .AllowAnyMethod()
-                                        .AllowAnyHeader()
-                                        .AllowCredentials());
+            {
+                options.AddPolicy("MyPolicy",
+                    builder => builder.WithOrigins("http://localhost:4200"));
             });
+
             services.AddControllers().AddNewtonsoftJson(options =>
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
@@ -51,23 +44,24 @@ namespace API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+             if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+        }
 
-            app.UseHttpsRedirection();
+        app.UseHttpsRedirection();
 
-            app.UseRouting();
+        app.UseRouting();
 
-            app.UseCors("CorsPolicy");
+        app.UseCors("MyPolicy");
 
-            app.UseAuthorization();
+        app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+        });
+
         }
     }
 }

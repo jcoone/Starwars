@@ -12,6 +12,13 @@ namespace API.Entitys
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Server=localhost;Database=Starwars;Trusted_Connection=True;");
+            }
+        }
         public virtual DbSet<Crafts> Crafts { get; set; }
         public virtual DbSet<FilmToCraft> FilmToCraft { get; set; }
         public virtual DbSet<FilmToPeople> FilmToPeople { get; set; }

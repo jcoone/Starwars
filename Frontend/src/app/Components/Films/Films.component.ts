@@ -21,7 +21,7 @@ export class FilmsComponent implements OnInit {
   // This need to be moved into a service and a global varible.
 
   ngOnInit() {
-    this.http.get('http://localhost:5000/api/starwars/films').subscribe(response => {
+    this.http.get('https://localhost:5001/api/starwars/films').subscribe(response => {
       this.films = response;
     }, error => {
       console.log(error);

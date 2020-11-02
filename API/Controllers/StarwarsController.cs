@@ -2,15 +2,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using API.Entitys;
-using Microsoft.EntityFrameworkCore;
 using API.Data.DTOs;
 using AutoMapper;
 using API.Repo;
-using Microsoft.AspNetCore.Cors;
 
 namespace API.Controllers
 {
     [ApiController]
+ 
     [Route("api/[controller]")]
     public class StarwarsController  : ControllerBase
     {
@@ -25,6 +24,7 @@ namespace API.Controllers
           _mapper = mapper;
         }
         
+        
         [HttpGet("films")]
          public async Task<ActionResult<IEnumerable<FilmDto>>> GetFilms(){
             
@@ -34,11 +34,12 @@ namespace API.Controllers
         }
 
          [HttpGet("film/{id}")]
-        public async Task<ActionResult<Films>> GetFilm(int id)
+        public async Task<ActionResult<FilmDto>> GetFilm(int id)
         {
           // Only used this as it was unique in the request.
             string url = $"http://swapi.dev/api/films/{id}/";
             var film = await _repo.GetFilmAysnc(url);
+            var mappedFilm = _mapper.Map<FilmToPeople>(film);
             return Ok(film);
         }
 
