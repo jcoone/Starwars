@@ -161,36 +161,10 @@ namespace API.Data
             }
         }
 
+        
+        // @todo
         private static void SeedPlanets(dynamic json){
-dynamic _planets = json["results"];
 
-            foreach (var _planet in _planets)
-            {
-                using (StarwarsContext context = new StarwarsContext())
-                {
-                     
-                    context.Add(new Planets
-                    {
-                        Url = _planet["url"],
-                        Name = _planet["name"],
-                        RotationPeriod = _planet["classification"],
-                        OrbitalPeriod = _planet["designation"],
-                        Diameter = ShortParse(_planet["average_height"]),
-                        Gravity = "",
-                        Terrain = _planet["designation"],
-                        SurfaceWater = ShortParse(_planet["average_height"]),
-                        SurfaceWater = _planet[]
-                    });
-                    
-                     var films = _planet["people"];
-                    foreach (var fl in films)
-                    {
-                        context.Add(new PlanetsToFilms { PlanetUrl = _planet["url"] , FilmsUrl = fl});
-                    } 
-                  context.SaveChanges();
-                  
-                }
-            }
         }
         private static void SeedCraft(dynamic json){
 

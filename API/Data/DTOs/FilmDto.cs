@@ -6,7 +6,6 @@ namespace API.Data.DTOs
 {
     public class FilmDto
     {
-        public string Url { get; set; }
         public string Title { get; set; }
         public short EpisodeId { get; set; }
         public string OpeningCrawl { get; set; }
@@ -22,6 +21,13 @@ namespace API.Data.DTOs
        
         [MapTo("Planets")]
         public virtual IList<String> Planets { get; set; }
+        
+        public  string[] starships { get; set; }
+        public  string[] vehicles  { get; set; }
+
+        public  string[] species  { get; set; }
+        public string Url { get; set; }
+
       
     }
 }
