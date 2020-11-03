@@ -22,7 +22,6 @@ namespace API.Data.DTOs
        
         [MapTo("Planets")]
         public virtual IList<String> Planets { get; set; }
-
-        
+      
     }
 }

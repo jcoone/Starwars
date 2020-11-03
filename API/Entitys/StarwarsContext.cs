@@ -16,7 +16,7 @@ namespace API.Entitys
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=localhost;Database=Starwars;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-USJBNO4\\SQLEXPRESS;Database=Starwars;Trusted_Connection=True;");
             }
         }
         public virtual DbSet<Crafts> Crafts { get; set; }

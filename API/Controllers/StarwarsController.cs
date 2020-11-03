@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using API.Entitys;
-using API.Data.DTOs;
 using AutoMapper;
 using API.Repo;
+using API.Data.DTOs;
 
 namespace API.Controllers
 {
